@@ -8,19 +8,19 @@ metadata:
 spec:
   serviceAccount: kubernetes
   containers:
-  - image: kubernetes
+  - image: khbekzod/my-binary:1.0.0
     name: kubernetes
     '''
 
 podTemplate(cloud: 'kubernetes', label: 'kubernetes', yaml: template) {
 node("kubernetes") {
     container("kubernetes") {
-    stage ("Checkout SCM") {
+    stage("Checkout SCM") { 
         git branch: 'main', url: 'https://github.com/khbekzod/flask-app-deploy.git'
-    }
+    } 
 
     stage("Check") {
-        sh " helm upgrade --install flask ./flask-app --set deployment.image=khbekzod/jenkins-flask-app:1.0.0"
+        sh "helm upgrade --install flask ./flask-app --set deployment.image=khbekzod/jenkins-flask-app"
     }
     }
 }
