@@ -6,6 +6,7 @@ metadata:
     run: kubernetes
   name: kubernetes
 spec:
+  serviceAccount: kubernetes
   containers:
   - image: kubernetes
     name: kubernetes
